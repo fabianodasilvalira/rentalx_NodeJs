@@ -1,9 +1,9 @@
 import { Category } from "../../entities/Category";
-import { ICategoryRepository } from "../../repositories/ICategoriesRepository";
+import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 class ListCategoriesUseCase {
 
-    constructor(private categoriesRepository: ICategoryRepository) { }
+    constructor(private categoriesRepository: ICategoriesRepository) { }
 
     execute(): Category[] {
 
