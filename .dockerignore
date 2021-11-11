@@ -1,3 +1,7 @@
 node_modules
 .git
 .vscode
+
+volumes:
+  - ./:/usr/src/app
+  - /usr/src/app/node_modules
