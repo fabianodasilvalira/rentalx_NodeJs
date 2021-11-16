@@ -1,9 +1,9 @@
-import { AppError } from './../../../errors/AppError';
+import { AppError } from '../../../../errors/AppError';
 import { inject, injectable } from "tsyringe";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 
-import { IUsersRepository } from "../repositories/IUsersRepository";
+import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 
 

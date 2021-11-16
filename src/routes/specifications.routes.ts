@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ensureAuthenticated } from "../database/middlewares/ensureAuthenticated";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 
 import { CreateSpecificationController } from "../modules/cars/useCases/createSpecification/CreateSpecificationController";
 
