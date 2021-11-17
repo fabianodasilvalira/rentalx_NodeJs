@@ -1,9 +1,10 @@
-import { AppError } from './../../../../errors/AppError';
+import { AppError } from '@shared/errors/AppError';
+
 import { inject, injectable } from "tsyringe";
 import { hash } from "bcryptjs";
 
-import { ICreateUserDTO } from "../../dtos/ICreateUsersDTO";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { ICreateUserDTO } from '@modules/accounts/dtos/ICreateUsersDTO';
+import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
 
 @injectable()
 class CreateUserUseCase {
