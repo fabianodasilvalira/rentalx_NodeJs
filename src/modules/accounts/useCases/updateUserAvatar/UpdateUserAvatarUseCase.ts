@@ -3,9 +3,6 @@ import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepositor
 import { deleteFile } from "@utils/file";
 import { inject, injectable } from "tsyringe";
 
-
-
-
 interface IRequest {
     user_id: string,
     avatar_file: string,
