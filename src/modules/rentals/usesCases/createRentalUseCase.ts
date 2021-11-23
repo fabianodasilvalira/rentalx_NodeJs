@@ -1,6 +1,8 @@
+import { IDateProvide } from '@shared/container/providers/DateProvider/IDateProvider';
 import { AppError } from '@shared/errors/AppError';
 import dayjs from 'dayjs';
 import utc from "dayjs/plugin/utc";
+import { inject, injectable } from 'tsyringe';
 
 import { Rental } from '../infra/typeorm/entities/Rental';
 import { IRentalsRepository } from '../repositories/IRentalsRepository';
@@ -13,10 +15,13 @@ interface IRequest {
     expected_return_date: Date;
 }
 
+@injectable()
 class CreateRentalUseCase {
-
     constructor(
-        private rentalsRepository: IRentalsRepository
+        @inject("RentalsRepository")
+        private rentalsRepository: IRentalsRepository,
+        @inject("DayjsDateProvider")
+        private dateProvider: IDateProvide,
     ) { }
 
     async execute({
@@ -41,16 +46,15 @@ class CreateRentalUseCase {
         }
 
         // O aluguel deve ter duração mínima de 24 hora
-        const expectedReturnDateFoprmat = dayjs(expected_return_date)
-            .utc()
-            .local()
-            .format();
 
-        const dateNow = dayjs().utc().local().format();
+        const dateNow = this.dateProvider.dateNow();
 
-        const compare = dayjs(expectedReturnDateFoprmat).diff(dateNow, "hours");
+        const compare = this.dateProvider.compareInHours(
+            dateNow,
+            expected_return_date
+        );
 
-        if (compare < minimumHour){
+        if (compare < minimumHour) {
             throw new AppError("Invalid return time!");
         }
 
