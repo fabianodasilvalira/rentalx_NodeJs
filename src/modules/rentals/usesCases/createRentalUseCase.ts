@@ -1,3 +1,4 @@
+import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { IDateProvide } from '@shared/container/providers/DateProvider/IDateProvider';
 import { AppError } from '@shared/errors/AppError';
 import dayjs from 'dayjs';
@@ -22,6 +23,9 @@ class CreateRentalUseCase {
         private rentalsRepository: IRentalsRepository,
         @inject("DayjsDateProvider")
         private dateProvider: IDateProvide,
+        @inject("CarsRepository")
+        private carsRepository: ICarsRepository,
+
     ) { }
 
     async execute({
@@ -64,6 +68,8 @@ class CreateRentalUseCase {
             expected_return_date,
         });
 
+        await this.carsRepository.updateAvailable(car_id, false);
+        
         return rental;
 
     }
