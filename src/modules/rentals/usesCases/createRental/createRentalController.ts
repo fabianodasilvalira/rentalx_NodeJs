@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
+import { container } from 'tsyringe';
+
 import { CreateRentalUseCase } from './createRentalUseCase';
 
-import { container } from 'tsyringe';
 
 
 class CreateRentalController {
@@ -18,7 +19,7 @@ class CreateRentalController {
             user_id: id,
         });
 
-        return response.status(201).json(rental);
+        return response.status(200).json(rental);
     }
 }
 

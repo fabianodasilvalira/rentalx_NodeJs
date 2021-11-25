@@ -1,12 +1,13 @@
 import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
+import { Rental } from '@modules/rentals/infra/typeorm/entities/Rental';
+import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
 import { IDateProvide } from '@shared/container/providers/DateProvider/IDateProvider';
 import { AppError } from '@shared/errors/AppError';
 import dayjs from 'dayjs';
 import utc from "dayjs/plugin/utc";
 import { inject, injectable } from 'tsyringe';
 
-import { Rental } from '../infra/typeorm/entities/Rental';
-import { IRentalsRepository } from '../repositories/IRentalsRepository';
+
 
 dayjs.extend(utc);
 
@@ -50,7 +51,6 @@ class CreateRentalUseCase {
         }
 
         // O aluguel deve ter duração mínima de 24 hora
-
         const dateNow = this.dateProvider.dateNow();
 
         const compare = this.dateProvider.compareInHours(
