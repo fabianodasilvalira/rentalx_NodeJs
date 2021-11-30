@@ -44,15 +44,15 @@ class AuthenticateUserUseCase {
             expiresIn: "1d"
         });
 
-        const rokenReturn: IResponse = {
+        const tokenReturn: IResponse = {
             token,
             user: {
                 name: user.name,
                 email: user.email,
-            }
-        }
+            },
+        };
 
-        return rokenReturn;
+        return tokenReturn;
 
     }
 }
